@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://duy25eks48g6y" path="res://Materials/Environment/Roof.tres" id="4_ioo17"]
 [ext_resource type="Material" uid="uid://djla5i7kx17jd" path="res://Materials/Environment/Tree.tres" id="5_wse8f"]
 [ext_resource type="Material" uid="uid://cy03mc2itmwdi" path="res://Materials/Environment/Rock.tres" id="6_ic0uy"]
+[ext_resource type="Script" uid="uid://wmyh248rbwb2" path="res://gate.gd" id="8_gbfbk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_m2pct"]
 size = Vector2(20, 20)
@@ -215,6 +216,7 @@ shape = SubResource("BoxShape3D_pb3um")
 
 [node name="LockedGate" type="Node3D" parent="." unique_id=837915918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.655493, 0, -6.5975723)
+script = ExtResource("8_gbfbk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LockedGate" unique_id=1746014745]
 transform = Transform3D(4.75, 0, 0, 0, 2, 0, 0, 0, 0.5, 0, 0.9618187, 0)
@@ -232,3 +234,4 @@ shape = SubResource("BoxShape3D_pkg7o")
 shape = SubResource("BoxShape3D_pkg7o")
 
 [connection signal="body_entered" from="CaveEntrance" to="." method="_on_cave_entrance_body_entered"]
+[connection signal="body_entered" from="LockedGate/MeshInstance3D/Area3D" to="LockedGate" method="_on_area_3d_body_entered"]

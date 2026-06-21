@@ -16,6 +16,8 @@ func _process(_delta: float) -> void:
 
 func _on_pickup_area_body_entered(body):
 	if body.name == "Player":
+		Global.has_key = true
+		print(Global.has_key)
 		print("¡Conseguiste una llave!")
 		$Key.queue_free()
 
