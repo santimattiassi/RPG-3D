@@ -15,5 +15,5 @@ func _on_cave_entrance_body_entered(body):
 		Global.spawn_point = "from_world"
 		get_tree().call_deferred(
 		"change_scene_to_file",
-		"res://cave.tscn"
+		"res://scenes/world/cave.tscn"
 		)

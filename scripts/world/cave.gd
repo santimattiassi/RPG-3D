@@ -26,5 +26,5 @@ func _on_exit_cave_body_entered(body: Node3D) -> void:
 		Global.spawn_point = "from_cave"
 		get_tree().call_deferred(
 		"change_scene_to_file",
-		"res://world.tscn"
+		"res://scenes/world/world.tscn"
 		)
