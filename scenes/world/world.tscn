@@ -330,6 +330,8 @@ shape = SubResource("ConcavePolygonShape3D_nqe8x")
 
 [node name="Player" parent="." unique_id=1100272659 instance=ExtResource("7_umvgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1707182, 0, 4.821207)
+speed = 4.0
+run_speed = 7.0
 
 [node name="CaveEntrance" type="Area3D" parent="." unique_id=731383998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29433703, 0, -5.7986717)
