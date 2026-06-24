@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "project": "GoVEX",
+  "repo": "santimattiassi/RPG-3D",
+  "savedAt": "2026-06-24T04:26:40.810Z",
+  "tasks": {
+    "t1": true,
+    "t2": true,
+    "t4": true,
+    "t3": true
+  },
+  "phaseCollapse": {
+    "pg-now": false,
+    "pg-next": false,
+    "pg-mid": false,
+    "pg-far": false
+  },
+  "totalTasks": 28,
+  "completedCount": 4
+}
