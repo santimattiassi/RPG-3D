@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://lmavpmmfja3y"]
+
+[ext_resource type="Script" uid="uid://5lap4x0ore03" path="res://scripts/enemies/slime.gd" id="1_rldp6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_m2pct"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b52nb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pb3um"]
+radius = 0.7
+
+[node name="Slime" type="CharacterBody3D" unique_id=1875111081]
+script = ExtResource("1_rldp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1692977329]
+mesh = SubResource("SphereMesh_m2pct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=605714194]
+shape = SubResource("SphereShape3D_b52nb")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=966025380]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=12120533]
+shape = SubResource("SphereShape3D_pb3um")

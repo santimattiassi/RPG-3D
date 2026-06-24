@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cwhoqk2ju5b3n" path="res://assets/forest/Tree_3_C_Color1.gltf" id="21_jyr8v"]
 [ext_resource type="PackedScene" uid="uid://dptt3b56lmybc" path="res://assets/forest/Rock_1_O_Color1.gltf" id="22_wnndm"]
 [ext_resource type="PackedScene" uid="uid://bphoc84nbad3s" path="res://assets/dungeon/floor_wood_large.gltf" id="23_wnndm"]
+[ext_resource type="PackedScene" uid="uid://lmavpmmfja3y" path="res://scenes/enemies/slime.tscn" id="24_xq18t"]
 [ext_resource type="PackedScene" uid="uid://cl5ela1t35hai" path="res://assets/forest/Rock_1_F_Color1.gltf" id="25_26xou"]
 [ext_resource type="PackedScene" uid="uid://bcapc1cwkkat1" path="res://assets/forest/Rock_2_B_Color1.gltf" id="27_jyr8v"]
 
@@ -330,8 +331,6 @@ shape = SubResource("ConcavePolygonShape3D_nqe8x")
 
 [node name="Player" parent="." unique_id=1100272659 instance=ExtResource("7_umvgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1707182, 0, 4.821207)
-speed = 4.0
-run_speed = 7.0
 
 [node name="CaveEntrance" type="Area3D" parent="." unique_id=731383998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29433703, 0, -5.7986717)
@@ -361,6 +360,9 @@ shape = SubResource("BoxShape3D_pkg7o")
 
 [node name="floor_wood_large2" parent="." unique_id=1925799314 instance=ExtResource("23_wnndm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.274318, 0, 3.7125907)
+
+[node name="Slime" parent="." unique_id=1875111081 instance=ExtResource("24_xq18t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3087873, 0.5502324, 7.755127)
 
 [connection signal="body_entered" from="CaveEntrance" to="." method="_on_cave_entrance_body_entered"]
 [connection signal="body_entered" from="LockedGate/MeshInstance3D/Area3D" to="LockedGate" method="_on_area_3d_body_entered"]

@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @onready var animated_knight = $AnimatedKnight
 @onready var animation_player = $AnimatedKnight/AnimationPlayer
+@onready var attack_area = $AnimatedKnight/AttackArea
+
 
 var is_attacking := false
 var attack_index := 0
@@ -92,7 +94,10 @@ func _physics_process(_delta):
 
 
 func start_attack():
-
+	
+	attack_area.monitoring = true
+	print("ATAQUE ON")
+	
 	combo_timer = 0.0
 
 	is_attacking = true
@@ -123,6 +128,9 @@ func _on_animation_player_animation_finished(anim_name):
 
 	if anim_name.begins_with("Player/Melee_1H_Attack"):
 
+		attack_area.monitoring = false
+		print("ATAQUE OFF")
+		
 		if combo_queued:
 
 			combo_queued = false
@@ -138,3 +146,19 @@ func _on_animation_player_animation_finished(anim_name):
 				await get_tree().create_timer(0.5).timeout
 
 			combo_cooldown = false
+
+
+func _on_attack_area_area_entered(area):
+
+	var enemy = area.get_parent()
+
+	print("OBJETO:", enemy)
+	print("CLASE:", enemy.get_class())
+	print("SCRIPT:", enemy.get_script())
+	print("NOMBRE:", enemy.name)
+
+	if enemy.has_method("take_damage"):
+		print("Tiene take_damage")
+		enemy.take_damage(1)
+	else:
+		print("NO tiene take_damage")

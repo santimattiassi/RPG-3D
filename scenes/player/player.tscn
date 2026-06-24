@@ -7,14 +7,14 @@
 [ext_resource type="Animation" uid="uid://dpuhygrdf7mhb" path="res://assets/animation/Animatios/Death_A_Pose.res" id="4_1u1sw"]
 [ext_resource type="Animation" uid="uid://bqcmdycfo032p" path="res://assets/animation/Animatios/Jump_Full_Short.res" id="4_kxw46"]
 [ext_resource type="Animation" uid="uid://baw5enwlupaa6" path="res://assets/animation/Animatios/Death_B.res" id="5_2t3bg"]
-[ext_resource type="Animation" uid="uid://buakpohx1bcl3" path="res://assets/animation/Animatios/Jump_Idle.res" id="5_8qxvo"]
+[ext_resource type="Animation" uid="uid://1x4u6k8g0ovy" path="res://assets/animation/Animatios/Jump_Idle.res" id="5_8qxvo"]
 [ext_resource type="Animation" uid="uid://c30c80ghiblg7" path="res://assets/animation/Animatios/Jump_Land.res" id="6_5q8fn"]
 [ext_resource type="Animation" uid="uid://cl1fas4ln4jn8" path="res://assets/animation/Animatios/Death_B_Pose.res" id="6_jrbya"]
 [ext_resource type="Animation" uid="uid://dda61ooaucleh" path="res://assets/animation/Animatios/Hit_A.res" id="7_ahqnk"]
 [ext_resource type="Animation" uid="uid://ddqhqni2a7dhd" path="res://assets/animation/Animatios/Jump_Start.res" id="7_wva7c"]
 [ext_resource type="Animation" uid="uid://8glsg63htu3m" path="res://assets/animation/Animatios/Melee_1H_Attack_Chop.res" id="8_7obkq"]
 [ext_resource type="Animation" uid="uid://24v8tr8bx3x0" path="res://assets/animation/Animatios/Hit_B.res" id="8_vb1ce"]
-[ext_resource type="Animation" uid="uid://dflraagaemmw6" path="res://assets/animation/Animatios/Idle_A.res" id="9_0ncpa"]
+[ext_resource type="Animation" uid="uid://c60jekkg40f42" path="res://assets/animation/Animatios/Idle_A.res" id="9_0ncpa"]
 [ext_resource type="Animation" uid="uid://c6qxptl3pos0u" path="res://assets/animation/Animatios/Melee_1H_Attack_Jump_Chop.res" id="9_vo27k"]
 [ext_resource type="Animation" uid="uid://chfbs6b44gu1r" path="res://assets/animation/Animatios/Melee_1H_Attack_Slice_Diagonal.res" id="10_genst"]
 [ext_resource type="Animation" uid="uid://d0tu87lppxbu3" path="res://assets/animation/Animatios/Idle_B.res" id="10_upxxc"]
@@ -38,10 +38,10 @@
 [ext_resource type="Animation" uid="uid://bgqfom20b8cae" path="res://assets/animation/Animatios/Melee_Unarmed_Attack_Punch_A.res" id="27_w8qe1"]
 [ext_resource type="Animation" uid="uid://tbap06u62wo3" path="res://assets/animation/Animatios/Melee_Unarmed_Idle.res" id="28_hdvrm"]
 [ext_resource type="Animation" uid="uid://fly27l2uq5pl" path="res://assets/animation/Animatios/Running_A.res" id="29_5xbmr"]
-[ext_resource type="Animation" uid="uid://cgtypln11g6w2" path="res://assets/animation/Animatios/Running_B.res" id="30_hir57"]
+[ext_resource type="Animation" uid="uid://oivwkxer1m8b" path="res://assets/animation/Animatios/Running_B.res" id="30_hir57"]
 [ext_resource type="Animation" uid="uid://cym7su423aef2" path="res://assets/animation/Animatios/T-Pose.res" id="31_7072n"]
-[ext_resource type="Animation" uid="uid://cmy0hunydc6hj" path="res://assets/animation/Animatios/Walking_A.res" id="32_gmu8b"]
-[ext_resource type="Animation" uid="uid://d3n13obbn3y4s" path="res://assets/animation/Animatios/Walking_B.res" id="33_a38bk"]
+[ext_resource type="Animation" uid="uid://nqplp6r54x57" path="res://assets/animation/Animatios/Walking_A.res" id="32_gmu8b"]
+[ext_resource type="Animation" uid="uid://2u1jrdsf0rhk" path="res://assets/animation/Animatios/Walking_B.res" id="33_a38bk"]
 [ext_resource type="Animation" uid="uid://bgkh80qv5jwdr" path="res://assets/animation/Animatios/Walking_C.res" id="34_3chqh"]
 [ext_resource type="Animation" uid="uid://dxuvjs2n2irus" path="res://assets/animation/Animatios/PickUp.res" id="38_uygh0"]
 [ext_resource type="Animation" uid="uid://bf2ysk5ml0spu" path="res://assets/animation/Animatios/Spawn_Air.res" id="41_t1aof"]
@@ -363,6 +363,9 @@ _data = {
 &"Walking_C": ExtResource("34_3chqh")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_b52nb"]
+size = Vector3(1, 1, 1.5)
+
 [node name="Player" type="CharacterBody3D" unique_id=1100272659]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014867783, 0, 0)
 script = ExtResource("1_8afob")
@@ -596,4 +599,12 @@ skeleton = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedKnight" unique_id=1736476222]
 libraries/Player = SubResource("AnimationLibrary_7nf13")
 
+[node name="AttackArea" type="Area3D" parent="AnimatedKnight" unique_id=1683166766]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatedKnight/AttackArea" unique_id=1675332054]
+shape = SubResource("BoxShape3D_b52nb")
+
 [connection signal="animation_finished" from="AnimatedKnight/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="AnimatedKnight/AttackArea" to="." method="_on_attack_area_area_entered"]
