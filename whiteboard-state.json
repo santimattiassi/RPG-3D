@@ -2,19 +2,306 @@
   "version": "1.0",
   "project": "GoVEX",
   "repo": "santimattiassi/RPG-3D",
-  "savedAt": "2026-06-24T10:46:03.582Z",
+  "savedAt": "2026-06-25T00:00:00.000Z",
+  "projectName": "GoVEX",
+  "engine": "godot",
+  "template": "godot",
+  "activeSections": [
+    "vision", "coreloop", "systems", "worldmap",
+    "playerhierarchy", "combo", "assets", "roadmap",
+    "backlog", "tasks", "repoexplorer", "decisions", "stickies"
+  ],
   "tasks": {
     "t1": true,
     "t2": true,
+    "t3": true,
     "t4": true,
-    "t3": true
+    "t_fix1": false,
+    "t_fix2": false,
+    "t_fix3": false,
+    "t5": false,
+    "t6": false,
+    "t7": false,
+    "t8": false
   },
-  "phaseCollapse": {
-    "pg-now": false,
-    "pg-next": false,
-    "pg-mid": false,
-    "pg-far": false
-  },
-  "totalTasks": 28,
-  "completedCount": 4
+  "players": [
+    {
+      "id": "player1",
+      "name": "Knight (Player)",
+      "color": "#e94560",
+      "repoPath": "player.tscn"
+    }
+  ],
+  "sectionData": {
+    "vision": {
+      "title": "GoVEX",
+      "engine": "Godot 4.7",
+      "genre": "Action Adventure RPG",
+      "visualStyle": "Low Poly 3D",
+      "inspiration": "Zelda: A Link to the Past",
+      "philosophy": "Primero jugable. Después bonito. Después grande.",
+      "pillars": [
+        "Exploración",
+        "Descubrimiento",
+        "Progresión por objetos",
+        "Combate simple y satisfactorio",
+        "Mundo interconectado"
+      ],
+      "status": "Vertical Slice v0.1 — Combate funcional ✅",
+      "repo": "github.com/santimattiassi/RPG-3D",
+      "coverImage": "https://cdna.artstation.com/p/assets/images/images/074/864/880/large/daniel-mascaro-zelda1.jpg?1713180860"
+    },
+    "coreloop": {
+      "meta": {
+        "title": "Ciclo de la Vertical Slice",
+        "subtitle": "Objetivo: Validar el núcleo jugable con un ciclo completo"
+      },
+      "bubbles": [
+        { "id": "b1", "icon": "🌿", "label": "Explorar mundo",        "color": "#4caf50" },
+        { "id": "b2", "icon": "🕳️", "label": "Entrar a cueva",        "color": "#2196f3" },
+        { "id": "b3", "icon": "🗝️", "label": "Conseguir llave",       "color": "#ffc107" },
+        { "id": "b4", "icon": "🚪", "label": "Abrir puerta bloqueada", "color": "#e94560" },
+        { "id": "b5", "icon": "🗺️", "label": "Acceder nueva zona",    "color": "#9c27b0" },
+        { "id": "b6", "icon": "⚔️", "label": "Combatir enemigos",     "color": "#ff5722" }
+      ]
+    },
+    "systems": {
+      "items": [
+        { "id": "s1",  "title": "🏃 Movimiento",          "detail": "CharacterBody3D · 8 direcciones · Plano XZ · speed=4.0 · run_speed=7.0", "status": "done" },
+        { "id": "s2",  "title": "📷 Cámara cenital",      "detail": "Vista top-down · Sigue al jugador · No rota con el personaje", "status": "done" },
+        { "id": "s3",  "title": "💨 Carrera",             "detail": "Input: Shift · Anim: Player/Running_B", "status": "done" },
+        { "id": "s4",  "title": "🔄 Rotación",            "detail": "Personaje gira hacia dirección de movimiento", "status": "done" },
+        { "id": "s5",  "title": "🎬 Animaciones",         "detail": "AnimationPlayer · Idle_A · Walking_A · Running_B", "status": "done" },
+        { "id": "s6",  "title": "🗝️ Sistema de Llave",   "detail": "Entrar cueva → Tomar llave → Desaparece · has_key = true", "status": "done" },
+        { "id": "s7",  "title": "🚪 Sistema de Puerta",  "detail": "has_key == true → Puerta desaparece · has_key == false → mensaje", "status": "done" },
+        { "id": "s8",  "title": "⚔️ Combate Base",       "detail": "Input: attack · Bloqueo de movimiento · speed_scale = 1.5", "status": "done" },
+        { "id": "s9",  "title": "🔗 Sistema de Combo",   "detail": "3 ataques encadenables · Cola de combo · Reinicio por timeout", "status": "done" },
+        { "id": "s10", "title": "💥 Hitbox de Espada",   "detail": "AttackArea (Area3D) + CollisionShape3D · activación por animación ✅", "status": "done" },
+        { "id": "s11", "title": "❤️ Sistema de Vida",    "detail": "HP básico · take_damage() · queue_free() ✅", "status": "done" },
+        { "id": "s12", "title": "🐛 Slime Enemigo",      "detail": "slime.tscn · CharacterBody3D · hitbox independiente · slime.gd ✅", "status": "done" },
+        { "id": "s13", "title": "💔 Sistema de Daño",    "detail": "Detección de colisión · señales verificadas · ¡Primer Slime muerto! ✅", "status": "done" },
+        { "id": "s14", "title": "🎯 Fix daño combo",     "detail": "Golpe 2 y 3 sin daño aún · Objetivo: hitbox independiente por hit", "status": "pending" },
+        { "id": "s15", "title": "✨ Feedback visual",    "detail": "Flash rojo · Knockback al recibir golpe", "status": "pending" },
+        { "id": "s16", "title": "🤖 IA básica Slime",    "detail": "Idle → Detectar → Perseguir → Atacar", "status": "pending" },
+        { "id": "s17", "title": "🖥️ HUD",               "detail": "Corazones · Barra de vida · CanvasLayer", "status": "pending" },
+        { "id": "s18", "title": "🌳 AnimationTree",      "detail": "Migrar de AnimationPlayer · Etapa posterior", "status": "future" }
+      ]
+    },
+    "worldmap": {
+      "zones": [
+        {
+          "id": "z1", "icon": "🌿", "name": "Exterior", "color": "green",
+          "badge": "ZONA 1", "status": "active",
+          "items": ["👤 Jugador", "🕳️ Entrada cueva", "🚪 Puerta bloqueada", "🌲 Decoración"]
+        },
+        {
+          "id": "z2", "icon": "🕳️", "name": "Cueva", "color": "blue",
+          "badge": "ZONA 2", "status": "active",
+          "items": ["🗝️ Llave", "Entrar → Llave → Salir"]
+        },
+        {
+          "id": "z3", "icon": "🔒", "name": "Zona Nueva", "color": "red",
+          "badge": "ZONA 3", "status": "active",
+          "items": ["⚔️ Enemigos", "🐛 Slimes", "Requiere llave"]
+        }
+      ],
+      "connections": [
+        { "id": "c1", "from": "z1", "to": "z2", "type": "bidir" },
+        { "id": "c2", "from": "z2", "to": "z3", "type": "right" }
+      ]
+    },
+    "playerhierarchy": {
+      "players": [
+        {
+          "id": "player1",
+          "name": "Knight (Player)",
+          "color": "#e94560",
+          "repoPath": "player.tscn",
+          "nodes": [
+            { "id": "n1", "label": "Player",           "type": "root",      "depth": 0 },
+            { "id": "n2", "label": "CollisionShape3D", "type": "collision", "depth": 1 },
+            { "id": "n3", "label": "MeshInstance3D",   "type": "mesh",      "depth": 1 },
+            { "id": "n4", "label": "AnimatedKnight",   "type": "animated",  "depth": 1 },
+            { "id": "n5", "label": "Rig_Medium",       "type": "rig",       "depth": 2 },
+            { "id": "n6", "label": "Skeleton3D",       "type": "skeleton",  "depth": 2 },
+            { "id": "n7", "label": "AnimationPlayer",  "type": "anim",      "depth": 2 },
+            { "id": "n8", "label": "CameraPivot",      "type": "pivot",     "depth": 1 },
+            { "id": "n9", "label": "Camera3D",         "type": "camera",    "depth": 2 }
+          ]
+        }
+      ]
+    },
+    "combo": {
+      "combos": {
+        "player1": {
+          "attacks": [
+            { "id": "a1", "num": 1, "name": "Slice Diagonal", "anim": "Player/Melee_1H_Attack_Slice_Diagonal", "dmg": 1, "status": "ok" },
+            { "id": "a2", "num": 2, "name": "Chop",           "anim": "Player/Melee_1H_Attack_Chop",           "dmg": 0, "status": "bug" },
+            { "id": "a3", "num": 3, "name": "Stab",           "anim": "Player/Melee_1H_Attack_Stab",           "dmg": 0, "status": "bug" }
+          ],
+          "properties": [
+            { "id": "p1", "icon": "🔗", "label": "Cola de combo",   "value": "encadena sin esperar fin de animación", "status": "ok" },
+            { "id": "p2", "icon": "⏱️", "label": "Reinicio",        "value": "timeout entre ataques → vuelve al ataque 1", "status": "ok" },
+            { "id": "p3", "icon": "🚫", "label": "Bloqueo",         "value": "no puede caminar mientras ataca", "status": "ok" },
+            { "id": "p4", "icon": "⚡", "label": "Velocidad",       "value": "speed_scale = 1.5", "status": "ok" },
+            { "id": "p5", "icon": "🐛", "label": "Cooldown",        "value": "al finalizar el combo ✅", "status": "ok" },
+            { "id": "p6", "icon": "💥", "label": "AttackArea",      "value": "activada por animación ✅", "status": "ok" },
+            { "id": "p7", "icon": "🎯", "label": "Bug activo",      "value": "solo golpe 1 aplica daño", "status": "bug" }
+          ],
+          "bugNote": "Golpe 1 → 1 dmg ✅  |  Golpe 2 → 0 dmg ❌  |  Golpe 3 → 0 dmg ❌\nObjetivo: cada golpe activa su propia hitbox independiente"
+        }
+      }
+    },
+    "assets": {
+      "assets": [
+        { "id": "a1", "tag": "PERSONAJE", "name": "KayKit Adventurers 2.0 FREE",      "detail": "Knight.glb (solo modelo, sin animaciones)", "url": "https://kaylousberg.itch.io/kaykit-adventurers" },
+        { "id": "a2", "tag": "ANIMS",     "name": "KayKit Character Animations 1.1",  "detail": "Rig_Medium_MovementBasic.glb · General.glb · CombatMelee.glb", "url": "" },
+        { "id": "a3", "tag": "ENTORNO",   "name": "KayKit Low Poly Environment",       "detail": "Terreno · Vegetación · Rocas · Decoración · Elementos de mundo", "url": "" }
+      ],
+      "anims": [
+        { "id": "an1", "state": "Idle",     "anim": "Player/Idle_A",                          "status": "done" },
+        { "id": "an2", "state": "Caminar",  "anim": "Player/Walking_A",                       "status": "done" },
+        { "id": "an3", "state": "Correr",   "anim": "Player/Running_B",                       "status": "done" },
+        { "id": "an4", "state": "Ataque 1", "anim": "Melee_1H_Attack_Slice_Diagonal",         "status": "done" },
+        { "id": "an5", "state": "Ataque 2", "anim": "Melee_1H_Attack_Chop",                   "status": "done" },
+        { "id": "an6", "state": "Ataque 3", "anim": "Melee_1H_Attack_Stab",                   "status": "done" }
+      ]
+    },
+    "roadmap": {
+      "phases": [
+        {
+          "id": "rp1", "icon": "🔥", "theme": "red",
+          "title": "Fase Inmediata — Combate Funcional",
+          "tasks": [
+            { "id": "rt1", "title": "🐛 Crear Slime",       "detail": "slime.tscn · CharacterBody3D · slime.gd", "done": true },
+            { "id": "rt2", "title": "💥 Hitbox de Espada",  "detail": "AttackArea (Area3D) + CollisionShape3D · activación por animación", "done": true },
+            { "id": "rt3", "title": "❤️ Aplicar Daño",     "detail": "take_damage() · detección de colisión · señales verificadas", "done": true },
+            { "id": "rt4", "title": "💀 Muerte del Enemigo","detail": "HP a 0 → queue_free() · ¡Primer Slime muerto! 🎉", "done": true }
+          ]
+        },
+        {
+          "id": "rp2", "icon": "⚡", "theme": "orange",
+          "title": "Fase 2 — Combate Completo",
+          "tasks": [
+            { "id": "rt5",  "title": "🎯 Fix daño combo (golpes 2 y 3)", "detail": "Cada golpe activa su hitbox independiente", "done": false },
+            { "id": "rt6",  "title": "✨ Feedback visual de daño",        "detail": "Flash rojo · Knockback al recibir golpe", "done": false },
+            { "id": "rt7",  "title": "🤖 IA básica del Slime",           "detail": "Idle → Detectar → Perseguir → Atacar", "done": false },
+            { "id": "rt8",  "title": "🛡️ Vida del Jugador",             "detail": "Sistema de corazones · Daño recibido", "done": false },
+            { "id": "rt9",  "title": "🖥️ HUD básico",                   "detail": "Corazones · Barra de vida", "done": false }
+          ]
+        },
+        {
+          "id": "rp3", "icon": "🌍", "theme": "blue",
+          "title": "Fase 3 — Exploración & Mundo",
+          "tasks": [
+            { "id": "rt10", "title": "📦 Cofres",           "detail": "Objetos · Recompensas · Animación apertura", "done": false },
+            { "id": "rt11", "title": "🔘 Interruptores",    "detail": "Puzzles de entorno · Puertas activables", "done": false },
+            { "id": "rt12", "title": "🌲 Bosque / Pueblo",  "detail": "Segunda zona del mundo · NPCs básicos", "done": false },
+            { "id": "rt13", "title": "🎒 Inventario básico","detail": "Objetos · Equipamiento · UI de inventario", "done": false }
+          ]
+        },
+        {
+          "id": "rp4", "icon": "🏰", "theme": "purple",
+          "title": "Fase 4 — Contenido Completo",
+          "tasks": [
+            { "id": "rt14", "title": "🏰 Mazmorra principal","detail": "Diseño completo · Puzzles · Jefe final", "done": false },
+            { "id": "rt15", "title": "👑 Jefes",             "detail": "Boss fights · Patrones de ataque únicos", "done": false },
+            { "id": "rt16", "title": "🎵 Música & Audio",    "detail": "OST · Sonidos de combate · Ambiente", "done": false },
+            { "id": "rt17", "title": "🚀 Release / Demo",    "detail": "Itch.io · Build estable · Trailer", "done": false }
+          ]
+        }
+      ]
+    },
+    "backlog": {
+      "columns": [
+        {
+          "id": "col-combat", "title": "⚔️ Combate", "color": "#e94560",
+          "items": ["Fix hitbox golpes 2 y 3", "Feedback visual de daño", "Knockback", "Invulnerabilidad temporal", "Enemigos variados", "Jefes"]
+        },
+        {
+          "id": "col-explore", "title": "🗺️ Exploración", "color": "#4caf50",
+          "items": ["Cofres", "Interruptores", "Llaves especiales", "Secretos", "Mazmorras"]
+        },
+        {
+          "id": "col-inv", "title": "🎒 Inventario", "color": "#ff9800",
+          "items": ["Objetos", "Equipamiento", "Consumibles"]
+        },
+        {
+          "id": "col-world", "title": "🌍 Mundo", "color": "#2196f3",
+          "items": ["Bosque", "Pueblo", "Segunda zona", "Mazmorra principal"]
+        },
+        {
+          "id": "col-ui", "title": "🖥️ UI & Audio", "color": "#9c27b0",
+          "items": ["Corazones HUD", "Barra de vida", "Inventario UI", "Menús", "Música", "Sonidos combate", "Ambiente"]
+        }
+      ]
+    },
+    "tasks": {
+      "phases": [
+        {
+          "id": "phase-now", "phaseKey": "now",
+          "title": "Fase Inmediata — Combate Funcional",
+          "tasks": [
+            { "id": "t1",     "title": "🐛 Crear Slime",              "detail": "slime.tscn · CharacterBody3D · slime.gd · hitbox independiente ✅", "tag": "done" },
+            { "id": "t2",     "title": "💥 Hitbox de Espada",         "detail": "AttackArea (Area3D) + CollisionShape3D · activación por animación ✅", "tag": "done" },
+            { "id": "t3",     "title": "❤️ Aplicar Daño",            "detail": "take_damage() · detección de colisión · señales verificadas ✅", "tag": "done" },
+            { "id": "t4",     "title": "💀 Muerte del Enemigo",       "detail": "HP a 0 → queue_free() · ¡Primer Slime muerto! 🎉✅", "tag": "done" }
+          ]
+        },
+        {
+          "id": "phase-next", "phaseKey": "next",
+          "title": "Fase 2 — Combate Completo",
+          "tasks": [
+            { "id": "t_fix1", "title": "🎯 Fix daño en combo (golpes 2 y 3)", "detail": "Cada golpe activa su hitbox independiente · daño escalonado por hit", "tag": "critical" },
+            { "id": "t_fix2", "title": "✨ Feedback visual de daño",           "detail": "Flash rojo en Slime · Knockback al recibir golpe", "tag": "critical" },
+            { "id": "t_fix3", "title": "🤖 IA básica del Slime",              "detail": "Idle → Detectar → Perseguir → Atacar", "tag": "critical" },
+            { "id": "t5",     "title": "🛡️ Vida del Jugador",                "detail": "Sistema de corazones · Daño recibido", "tag": "high" },
+            { "id": "t6",     "title": "🔄 Invulnerabilidad temporal",        "detail": "I-frames tras recibir daño", "tag": "high" },
+            { "id": "t7",     "title": "💨 Knockback",                        "detail": "Empuje al recibir / dar daño", "tag": "high" },
+            { "id": "t8",     "title": "🖥️ HUD básico",                      "detail": "Corazones · Barra de vida", "tag": "high" }
+          ]
+        },
+        {
+          "id": "phase-mid", "phaseKey": "mid",
+          "title": "Fase 3 — Exploración & Mundo",
+          "tasks": [
+            { "id": "t11", "title": "📦 Cofres",           "detail": "Objetos · Recompensas · Animación apertura", "tag": "medium" },
+            { "id": "t12", "title": "🔘 Interruptores",    "detail": "Puzzles de entorno · Puertas activables", "tag": "medium" },
+            { "id": "t13", "title": "🗝️ Llaves especiales","detail": "Progresión por objetos · Tipos de llave", "tag": "medium" },
+            { "id": "t14", "title": "🌲 Bosque / Pueblo",  "detail": "Segunda zona del mundo · NPCs básicos", "tag": "low" }
+          ]
+        },
+        {
+          "id": "phase-far", "phaseKey": "far",
+          "title": "Fase 4 — Contenido Completo",
+          "tasks": [
+            { "id": "t17", "title": "🏰 Mazmorra principal","detail": "Diseño completo · Puzzles · Jefe final", "tag": "future" },
+            { "id": "t18", "title": "👑 Jefes",             "detail": "Boss fights · Patrones de ataque únicos", "tag": "future" },
+            { "id": "t19", "title": "🎵 Música & Audio",    "detail": "OST · Sonidos de combate · Ambiente", "tag": "future" },
+            { "id": "t20", "title": "📋 Menús completos",   "detail": "Menú principal · Pausa · Guardado", "tag": "future" }
+          ]
+        }
+      ]
+    },
+    "decisions": {
+      "items": [
+        { "id": "d1", "icon": "🎬", "title": "AnimationPlayer vs AnimationTree", "body": "Se usa AnimationPlayer durante la Vertical Slice. AnimationTree queda para etapa posterior.", "tag": "ARQUITECTURA", "color": "#2196f3" },
+        { "id": "d2", "icon": "📷", "title": "Cámara cenital fija",              "body": "No rota con el jugador. Inspiración directa en Zelda ALTTP. Simplifica el control y la lectura del espacio.", "tag": "DISEÑO", "color": "#4caf50" },
+        { "id": "d3", "icon": "⚡", "title": "Cola de combo",                   "body": "Permite encadenar ataques sin esperar el fin de cada animación. Mejora la sensación de combate sin complejidad extra.", "tag": "GAMEPLAY", "color": "#e94560" },
+        { "id": "d4", "icon": "🎯", "title": "Filosofía de desarrollo",         "body": "Priorizar: jugabilidad, claridad, iteración rápida. Evitar: sobreingeniería, sistemas complejos prematuros.", "tag": "PROCESO", "color": "#ff9800" },
+        { "id": "d5", "icon": "🔗", "title": "Estructura plana del repo",       "body": "Scripts y escenas en la raíz durante Vertical Slice. Reorganizar en carpetas scenes/ y scripts/ en Fase 2.", "tag": "ARQUITECTURA", "color": "#2196f3" }
+      ]
+    },
+    "stickies": {
+      "items": [
+        { "id": "st1", "color": "green",  "title": "✅ Filosofía",  "body": "Primero jugable. Después bonito. Después grande. No sobreingeniería.", "rotate": -1 },
+        { "id": "st2", "color": "pink",   "title": "🔥 Urgente",    "body": "Fix combo: golpes 2 y 3 sin daño. Prioridad #1.", "rotate": 1.5 },
+        { "id": "st3", "color": "blue",   "title": "🔗 Repo",       "body": "github.com/santimattiassi/RPG-3D\nEstado: v0.1 Vertical Slice", "rotate": -0.5 },
+        { "id": "st4", "color": "yellow", "title": "🎉 Logro",      "body": "¡Primer Slime muerto! El ciclo de combate básico funciona.", "rotate": 1 }
+      ]
+    },
+    "repoexplorer": {
+      "initialized": true
+    }
+  }
 }
